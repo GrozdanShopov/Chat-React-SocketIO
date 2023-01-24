@@ -5,6 +5,18 @@ const io = require('socket.io')(server)
 const socketManage = require('./socketManage')(io)
 const PORT = process.env.PORT || 4000
 const path = require('path')
+const mongoose = require('mongoose');
+
+mongoose.connect(
+    "mongodb://localhost:27017/",
+    {
+        dbName:'star',
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    },
+    (err) => 
+        err ? console.log(err) : console.log('Connected to star DB')
+);
 
 
 io.on('connection', socketManage )
